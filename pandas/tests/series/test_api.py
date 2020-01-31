@@ -519,6 +519,12 @@ class TestSeriesMisc:
         result = s + 1
         assert result.attrs == {"version": 1}
 
+    def test_attrs_constructor(self):
+        s = pd.Series([0, 1], name="abc")
+        s.attrs["version"] = 1
+        df = s.to_frame()
+        assert df.abc.attrs == {"version": 1}
+
 
 class TestCategoricalSeries:
     @pytest.mark.parametrize(
